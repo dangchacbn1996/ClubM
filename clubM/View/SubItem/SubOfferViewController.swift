@@ -62,6 +62,7 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
         controller.showContent(showContentOrMember: true)
+        controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
     

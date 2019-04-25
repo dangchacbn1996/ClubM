@@ -10,7 +10,7 @@ import UIKit
 import CollapsibleTableSectionViewController
 //import Coll
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     @IBOutlet weak var tableView : UITableView!
     public var delegate: CollapsibleTableSectionDelegate?
     fileprivate var _sectionsState = [Int : Bool]()
@@ -41,6 +41,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                            forCellReuseIdentifier: itemID)
     }
     
+    @IBAction func showMembership(){
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+        controller.showContent(showContentOrMember: false)
+        controller.modalTransitionStyle = .partialCurl
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listData.count
     }
@@ -62,9 +69,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (listData[indexPath.row].subItem.count == 0) {
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
-            controller.showContent(showContentOrMember: true)
-            self.present(controller, animated: false, completion: nil)
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
             return
         }
         let cell = tableView.cellForRow(at: indexPath) as! MainItemTableViewCell
@@ -78,7 +85,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 }
 
-extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.tableView.bounds.width / 5
@@ -98,7 +105,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Cell: Click(\((collectionView.cellForItem(at: indexPath) as! SubItemCollectionViewCell).lbContent.text))")
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
-//        controller.showContent(showContentOrMember: true)
+        controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
     
