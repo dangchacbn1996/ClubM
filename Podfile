@@ -8,6 +8,7 @@ target 'clubM' do
   # Pods for clubM
 
   pod 'CollapsibleTableSectionViewController'
+#  pod 'DisplaySwitcher'
 
   target 'clubMTests' do
     inherit! :search_paths
