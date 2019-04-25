@@ -11,36 +11,6 @@ import CollapsibleTableSectionViewController
 //import Coll
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: itemID, for: indexPath) as! MainItemTableViewCell
-        cell.setData(listData[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100 // <- Your Desired Height
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let height = UITableView.automaticDimension
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! MainItemTableViewCell
-        cell.setCollapsed(!cell.isCollapsed)
-        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? MainItemTableViewCell else { return }
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
-    }
-    
     @IBOutlet weak var tableView : UITableView!
     public var delegate: CollapsibleTableSectionDelegate?
     fileprivate var _sectionsState = [Int : Bool]()
@@ -69,6 +39,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.register(UINib(nibName: itemID, bundle: nil),
                            forCellReuseIdentifier: itemID)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: itemID, for: indexPath) as! MainItemTableViewCell
+        cell.setData(listData[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100 // <- Your Desired Height
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //        let height = UITableView.automaticDimension
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (listData[indexPath.row].subItem.count == 0) {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+            controller.showContent(showContentOrMember: true)
+            self.present(controller, animated: false, completion: nil)
+            return
+        }
+        let cell = tableView.cellForRow(at: indexPath) as! MainItemTableViewCell
+        cell.setCollapsed(!cell.isCollapsed)
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? MainItemTableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
 }
 
