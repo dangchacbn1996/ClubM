@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  ViewController.swift
 //  clubM
 //
 //  Created by ChacND_HAV on 4/24/19.
@@ -7,26 +7,32 @@
 //
 
 import UIKit
+import CollapsibleTableSectionViewController
+//import Coll
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    
-    public static let ID_Identify = "MainViewController"
-    
     @IBOutlet weak var tableView : UITableView!
+    public var delegate: CollapsibleTableSectionDelegate?
+    fileprivate var _sectionsState = [Int : Bool]()
     let itemID = MainItemTableViewCell.ID_Identify
-    var selected = -1
+    var subItem = SubItemCollectionViewCell.ID_Identify
     var listData = [MainItemModel(title: "Membership Card", subItem: ["SubItem1",
-                                                                 "SubItem2"]),
+                                                                      "SubItem2",
+                                                                      "SubItem2",
+                                                                      "SubItem2",
+                                                                      "SubItem2",
+                                                                      "SubItem2",
+                                                                      "SubItem2"]),
                     MainItemModel(title: "Hot Offers", subItem: ["SubItem1",
                                                                  "SubItem2"]),
                     MainItemModel(title: "Offers", subItem: ["SubItem1",
-                                                                 "SubItem2"]),
+                                                             "SubItem2"]),
                     MainItemModel(title: "Emigration", subItem: ["SubItem1",
                                                                  "SubItem2"]),
                     MainItemModel(title: "About Us", subItem: ["SubItem1",
-                                                                 "SubItem2"]),
+                                                               "SubItem2"]),
                     MainItemModel(title: "Contact Us", subItem: [])]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -35,14 +41,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                            forCellReuseIdentifier: itemID)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.cellForRow(at: indexPath) as! MainItemTableViewCell
-        if (indexPath.row == selected) {
-//            cell.selected(true)
-            return 198
-        }
-//        cell.selected(false)
-        return 48
+    @IBAction func showMembership(){
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+        controller.showContent(showContentOrMember: false)
+        controller.modalTransitionStyle = .partialCurl
+        self.present(controller, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,23 +54,59 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: itemID, for: indexPath) as! MainItemTableViewCell
-//        cell.setData(data: listData[indexPath.row])
         cell.setData(listData[indexPath.row])
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if (selected == indexPath.row) {
-//            selected = -1
-//            (tableView.cellForRow(at: indexPath) as! MainItemTableViewCell).selected(false)
-//            tableView.reloadData()
-//            return
-//        }
-//        if (selected != -1) {
-//            (tableView.cellForRow(at: IndexPath(row: selected, section: 0)) as! MainItemTableViewCell).selected(false)
-//        }
-//        selected = indexPath.row
-//        (tableView.cellForRow(at: indexPath) as! MainItemTableViewCell).selected(true)
-//        tableView.reloadData()
-//    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100 // <- Your Desired Height
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //        let height = UITableView.automaticDimension
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (listData[indexPath.row].subItem.count == 0) {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
+            return
+        }
+        let cell = tableView.cellForRow(at: indexPath) as! MainItemTableViewCell
+        cell.setCollapsed(!cell.isCollapsed)
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? MainItemTableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+    }
+}
+
+extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = self.tableView.bounds.width / 5
+        return CGSize(width: width, height: width * 5 / 4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return listData[collectionView.tag].subItem.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: subItem, for: indexPath) as! SubItemCollectionViewCell
+        cell.setData(listData[collectionView.tag].subItem[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Cell: Click(\((collectionView.cellForItem(at: indexPath) as! SubItemCollectionViewCell).lbContent.text))")
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
+        controller.modalTransitionStyle = .crossDissolve
+        self.present(controller, animated: true, completion: nil)
+    }
+    
 }
