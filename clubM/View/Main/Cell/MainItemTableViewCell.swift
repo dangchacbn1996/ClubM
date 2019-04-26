@@ -37,18 +37,16 @@ class MainItemTableViewCell: UITableViewCell{
     
     func setCollapsed(_ isCollapsed : Bool) {
         self.isCollapsed = isCollapsed
-        collectionView.isHidden = isCollapsed
-        let constraint = isCollapsed ? 48 : 48 + collectionView.collectionViewLayout.collectionViewContentSize.height
-        print("Cell: \(isCollapsed)")
-        print("Cell: Height \(constraint)")
-        self.collectionViewHeight.constant = constraint
+//        collectionView.isHidden = isCollapsed
+        collectionView.reloadData()
+        collectionView.performBatchUpdates(nil) { (update) in
+            let constraint = isCollapsed ? 48 : 48 + self.collectionView.collectionViewLayout.collectionViewContentSize.height
+            print("Cell: \(isCollapsed)")
+            print("Cell: Height \(constraint)")
+            self.collectionViewHeight.constant = constraint
+            self.setNeedsLayout()
+        }
     }
-    
-//    func getHeight() -> (CGFloat) {
-//        if isCollapsed {
-//            self.conte
-//        }
-//    }
     
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         collectionView.delegate = dataSourceDelegate

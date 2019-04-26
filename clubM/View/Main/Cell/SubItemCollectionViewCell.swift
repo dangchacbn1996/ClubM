@@ -30,6 +30,7 @@ class SubItemCollectionViewCell: UICollectionViewCell {
     
     func setData(_ model : String) {
         lbContent.text = model
+//        self.setNeedsLayout()
     }
 
 }

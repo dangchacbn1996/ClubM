@@ -7,38 +7,66 @@
 //
 
 import UIKit
-import CollapsibleTableSectionViewController
 //import Coll
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIManagerFunction{
     @IBOutlet weak var tableView : UITableView!
-    public var delegate: CollapsibleTableSectionDelegate?
     fileprivate var _sectionsState = [Int : Bool]()
     let itemID = MainItemTableViewCell.ID_Identify
     var subItem = SubItemCollectionViewCell.ID_Identify
-    var listData = [MainItemModel(title: "Membership Card", subItem: ["SubItem1",
-                                                                      "SubItem2",
-                                                                      "SubItem2",
-                                                                      "SubItem2",
-                                                                      "SubItem2",
-                                                                      "SubItem2",
-                                                                      "SubItem2"]),
-                    MainItemModel(title: "Hot Offers", subItem: ["SubItem1",
-                                                                 "SubItem2"]),
-                    MainItemModel(title: "Offers", subItem: ["SubItem1",
-                                                             "SubItem2"]),
-                    MainItemModel(title: "Emigration", subItem: ["SubItem1",
-                                                                 "SubItem2"]),
-                    MainItemModel(title: "About Us", subItem: ["SubItem1",
-                                                               "SubItem2"]),
-                    MainItemModel(title: "Contact Us", subItem: [])]
+    var listData = [MainItemModel]()
+//    var listData = [MainItemModel(title: "Membership Card", subItem: ["SubItem1",
+//                                                                      "SubItem2",
+//                                                                      "SubItem2",
+//                                                                      "SubItem2",
+//                                                                      "SubItem2",
+//                                                                      "SubItem2",
+//                                                                      "SubItem2"]),
+//                    MainItemModel(title: "Hot Offers", subItem: ["SubItem1",
+//                                                                 "SubItem2"]),
+//                    MainItemModel(title: "Offers", subItem: ["SubItem1",
+//                                                             "SubItem2"]),
+//                    MainItemModel(title: "Emigration", subItem: ["SubItem1",
+//                                                                 "SubItem2"]),
+//                    MainItemModel(title: "About Us", subItem: ["SubItem1",
+//                                                               "SubItem2"]),
+//                    MainItemModel(title: "Contact Us", subItem: [])]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        APIManager.getListData(callback: self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: itemID, bundle: nil),
                            forCellReuseIdentifier: itemID)
+    }
+    
+    func apiDoneGetListData() {
+        bindData()
+        tableView.reloadData()
+    }
+    
+    func bindData(){
+        listData = [MainItemModel]()
+        if DataManager.modelService == nil {
+            return
+        }
+        if DataManager.modelService.listData == nil {
+           return
+        }
+        for data in DataManager.modelService!.listData! {
+            if (listData.count == 0) {
+                listData.append(MainItemModel(title: data.menu_name ?? "Subject", subItem: [data.group_name ?? "group"]))
+                continue
+            }
+            for index in 0..<listData.count {
+                if (data.menu_name != listData[index].title) {
+                    listData.append(MainItemModel(title: data.menu_name ?? "Subject", subItem: [data.group_name ?? "group"]))
+                } else {
+                    listData[index].subItem.append(data.group_name ?? "group")
+                }
+            }
+        }
     }
     
     @IBAction func showMembership(){
@@ -56,15 +84,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: itemID, for: indexPath) as! MainItemTableViewCell
         cell.setData(listData[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100 // <- Your Desired Height
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //        let height = UITableView.automaticDimension
-        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,6 +104,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
+//Quan li collectionView
 extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

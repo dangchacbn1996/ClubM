@@ -6,8 +6,8 @@ target 'clubM' do
   use_frameworks!
 
   # Pods for clubM
-
-  pod 'CollapsibleTableSectionViewController'
+  pod 'Alamofire'
+#  pod 'CollapsibleTableSectionViewController'
 #  pod 'DisplaySwitcher'
 
   target 'clubMTests' do
