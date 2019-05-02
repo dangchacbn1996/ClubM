@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2031282FFAA9A3CF372E3ED6 /* Pods_clubMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51E8B1E450E75DD00388811 /* Pods_clubMTests.framework */; };
-		5306A59E2271974E004C8A09 /* MainItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5306A59C2271974E004C8A09 /* MainItemTableViewCell.swift */; };
-		5306A59F2271974E004C8A09 /* MainItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5306A59D2271974E004C8A09 /* MainItemTableViewCell.xib */; };
 		5306A5A2227197A0004C8A09 /* SubItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5306A5A0227197A0004C8A09 /* SubItemCollectionViewCell.swift */; };
 		5306A5A3227197A0004C8A09 /* SubItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5306A5A1227197A0004C8A09 /* SubItemCollectionViewCell.xib */; };
-		5306A5A52271A127004C8A09 /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5306A5A42271A127004C8A09 /* CustomFlowLayout.swift */; };
+		53186540227AE79100E384BA /* CollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5318653F227AE79100E384BA /* CollectionHeader.swift */; };
 		536075DD2272B5280055E061 /* ModelServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075DC2272B5280055E061 /* ModelServiceInfo.swift */; };
 		536075DF2272B7B40055E061 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075DE2272B7B40055E061 /* APIManager.swift */; };
 		536075E12272B8790055E061 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075E02272B8790055E061 /* DataManager.swift */; };
@@ -65,11 +63,9 @@
 		0C8F57D97970B8C870B85563 /* Pods_clubM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_clubM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25FCDD8BC695A02011B845AB /* Pods-clubMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clubMTests.release.xcconfig"; path = "Target Support Files/Pods-clubMTests/Pods-clubMTests.release.xcconfig"; sourceTree = "<group>"; };
 		487CD5A452131C2069F4879A /* Pods-clubMUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clubMUITests.release.xcconfig"; path = "Target Support Files/Pods-clubMUITests/Pods-clubMUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5306A59C2271974E004C8A09 /* MainItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemTableViewCell.swift; sourceTree = "<group>"; };
-		5306A59D2271974E004C8A09 /* MainItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainItemTableViewCell.xib; sourceTree = "<group>"; };
 		5306A5A0227197A0004C8A09 /* SubItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		5306A5A1227197A0004C8A09 /* SubItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		5306A5A42271A127004C8A09 /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
+		5318653F227AE79100E384BA /* CollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeader.swift; sourceTree = "<group>"; };
 		536075DC2272B5280055E061 /* ModelServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelServiceInfo.swift; sourceTree = "<group>"; };
 		536075DE2272B7B40055E061 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		536075E02272B8790055E061 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -291,11 +287,9 @@
 		5383215D2270143D001D0CC5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5306A59C2271974E004C8A09 /* MainItemTableViewCell.swift */,
-				5306A59D2271974E004C8A09 /* MainItemTableViewCell.xib */,
 				5306A5A0227197A0004C8A09 /* SubItemCollectionViewCell.swift */,
 				5306A5A1227197A0004C8A09 /* SubItemCollectionViewCell.xib */,
-				5306A5A42271A127004C8A09 /* CustomFlowLayout.swift */,
+				5318653F227AE79100E384BA /* CollectionHeader.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -449,7 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				537B1633226FFAEB00E35F0E /* LaunchScreen.storyboard in Resources */,
-				5306A59F2271974E004C8A09 /* MainItemTableViewCell.xib in Resources */,
 				537B1630226FFAEB00E35F0E /* Assets.xcassets in Resources */,
 				5306A5A3227197A0004C8A09 /* SubItemCollectionViewCell.xib in Resources */,
 				F054E56A2271FE76007BA7EE /* SubItemCVC.xib in Resources */,
@@ -567,6 +560,7 @@
 				53832169227051D5001D0CC5 /* ViewExtension.swift in Sources */,
 				536075E12272B8790055E061 /* DataManager.swift in Sources */,
 				537B162B226FFAEA00E35F0E /* MainViewController.swift in Sources */,
+				53186540227AE79100E384BA /* CollectionHeader.swift in Sources */,
 				537B166C22700B8B00E35F0E /* ConvertHelper.swift in Sources */,
 				537B167822700B8B00E35F0E /* CustomUIButton.swift in Sources */,
 				537B167522700B8B00E35F0E /* CustomImageView.swift in Sources */,
@@ -579,12 +573,10 @@
 				537B167322700B8B00E35F0E /* CustomButton.swift in Sources */,
 				537B167422700B8B00E35F0E /* CustomRoundedView.swift in Sources */,
 				537B166E22700B8B00E35F0E /* DatePickerDialog.swift in Sources */,
-				5306A59E2271974E004C8A09 /* MainItemTableViewCell.swift in Sources */,
 				537B167022700B8B00E35F0E /* ImageViewextension.swift in Sources */,
 				F054E5692271FE76007BA7EE /* SubItemCVC.swift in Sources */,
 				F054E572227216A4007BA7EE /* CollumnFlowLayout.swift in Sources */,
 				5306A5A2227197A0004C8A09 /* SubItemCollectionViewCell.swift in Sources */,
-				5306A5A52271A127004C8A09 /* CustomFlowLayout.swift in Sources */,
 				536075DF2272B7B40055E061 /* APIManager.swift in Sources */,
 				F054E56C22720215007BA7EE /* SubOfferViewController.swift in Sources */,
 				537B166B22700B8B00E35F0E /* UIColorExtension.swift in Sources */,

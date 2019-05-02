@@ -15,6 +15,7 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
     static let ID_Identify = "SubOfferViewController"
     let itemID = SubItemCVC.ID_Identify
     @IBOutlet weak var collectionView : UICollectionView!
+    @IBOutlet weak var btnChangeLayout : UIButton!
     var isGrid = false
     
     @IBAction func goBack(){
@@ -32,8 +33,16 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
                       height: width)
     }
     
+    @IBAction func showMembership(){
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+        controller.showContent(showContentOrMember: false)
+        controller.modalTransitionStyle = .partialCurl
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     @IBAction func changeLayout(){
         isGrid = !isGrid
+        btnChangeLayout.setImage(!isGrid ? UIImage(named: "ic_module")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) : UIImage(named: "ic_list")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: UIControl.State.normal)
 //        collectionView.reload
         UIView.transition(with: collectionView, duration: 0.5, options: .transitionCrossDissolve, animations: {
             //Do the data reload here

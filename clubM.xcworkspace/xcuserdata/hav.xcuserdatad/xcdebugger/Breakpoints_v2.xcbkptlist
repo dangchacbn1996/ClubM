@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "clubM/View/Main/Cell/MainItemTableViewCell.swift"
-            timestampString = "577946079.805773"
+            filePath = "clubM/View/Main/MainViewController.swift"
+            timestampString = "578484702.7403491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "setCollapsed(_:)"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "changeSectionState(header:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

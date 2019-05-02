@@ -11,10 +11,17 @@ import UIKit
 struct MainItemModel {
     var title : String
     var subItem : [String]
+    var isExpanded : Bool = false
+    
+    init(title : String, subItem : [String]) {
+        self.title = title
+        self.subItem = subItem
+        isExpanded = false
+    }
 }
 
 class MainItemTableViewCell: UITableViewCell{
-    
+
     static let ID_Identify = "MainItemTableViewCell"
     
     @IBOutlet weak var lbTitle : UILabel!
