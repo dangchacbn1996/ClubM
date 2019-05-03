@@ -24,8 +24,10 @@ class SubItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setData(_ model : SubItemModel) {
-        lbContent.text = model.content
+    func setData(_ model : ServiceGroup) {
+//        lbContent.text = model.content
+        lbContent.text = model.group_name ?? "Group"
+        imageView.downloaded(from: model.group_thumbnail ?? "")
     }
     
     func setData(_ model : String) {

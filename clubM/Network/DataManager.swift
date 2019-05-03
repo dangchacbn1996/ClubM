@@ -9,7 +9,7 @@
 import Foundation
 
 class DataManager {
-    static var modelService : ModelServiceInfo!
+    static var modelService : ModelListService!
     
 //    static func convertTo
 }

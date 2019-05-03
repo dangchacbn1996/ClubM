@@ -8,25 +8,13 @@
 
 import UIKit
 
-struct MainItemModel {
-    var title : String
-    var subItem : [String]
-    var isExpanded : Bool = false
-    
-    init(title : String, subItem : [String]) {
-        self.title = title
-        self.subItem = subItem
-        isExpanded = false
-    }
-}
-
 class MainViewController: UIViewController, APIManagerFunction{
     @IBOutlet weak var collectionView : UICollectionView!
     fileprivate var _sectionsState = [Int : Bool]()
-//    let itemID = MainItemTableViewCell.ID_Identify
     let headerID = "collectionHeader"
-    var subItem = SubItemCollectionViewCell.ID_Identify
-    var listData = [MainItemModel]()
+    var itemID = SubItemCollectionViewCell.ID_Identify
+    var data = ModelListService()
+    var dataExpand = [Bool]()
     var colHeight : CGFloat = 0
     var selectedRow = -1
 
@@ -35,42 +23,20 @@ class MainViewController: UIViewController, APIManagerFunction{
         APIManager.getListData(callback: self)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: subItem, bundle: nil), forCellWithReuseIdentifier: subItem)
+        collectionView.register(UINib(nibName: itemID, bundle: nil), forCellWithReuseIdentifier: itemID)
     }
     
     func apiDoneGetListData() {
-        bindData()
-    }
-    
-    func bindData(){
-        listData = [MainItemModel]()
-        if DataManager.modelService == nil {
-            return
-        }
-        if DataManager.modelService.listData == nil {
-           return
-        }
-        for data in DataManager.modelService!.listData! {
-            if (listData.count == 0) {
-                listData.append(MainItemModel(title: data.menu_name ?? "Subject", subItem: [data.group_name ?? "group"]))
-                continue
-            }
-            for index in 0..<listData.count {
-                if (data.menu_name != listData[index].title) {
-                    listData.append(MainItemModel(title: data.menu_name ?? "Subject", subItem: [data.group_name ?? "group"]))
-                } else {
-                    listData[index].subItem.append(data.group_name ?? "group")
-                }
-            }
+        self.data = DataManager.modelService
+        dataExpand = [Bool]()
+        for _ in data.listMenu {
+            dataExpand.append(false)
         }
         collectionView.reloadData()
     }
     
     @IBAction func showMembership(){
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
-        controller.showContent(showContentOrMember: false)
-        controller.modalTransitionStyle = .partialCurl
-        self.present(controller, animated: true, completion: nil)
+        (UIApplication.shared.delegate as! AppDelegate).showMembership(viewController : self)
     }
 }
 
@@ -83,56 +49,72 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         return CGSize(width: width, height: colHeight)
     }
     
-//    func getCollectionHeight(cell : MainItemTableViewCell) -> (CGFloat) {
-//        let count = listData[cell.collectionView.tag].subItem.count
-//        let height = (CGFloat(Int(CGFloat(count))) / 4) * colHeight + 48
-//        return height
-//    }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return listData.count
+        return data.listMenu.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (listData[section].isExpanded) {
-            return listData[section].subItem.count
+        if (dataExpand[section]) {
+            return data.listMenu[section].listGroup?.count ?? 0
         } else {
             return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: subItem, for: indexPath) as! SubItemCollectionViewCell
-        cell.setData(listData[collectionView.tag].subItem[indexPath.item])
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemID, for: indexPath) as! SubItemCollectionViewCell
+        cell.setData(data.listMenu[indexPath.section].listGroup![indexPath.item])
         return cell
     }
-    
-//    headerView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: self.collectionView.frame.width, height: 48)
     }
     
+    //Header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! CollectionHeader
-//        selectedRow = indexPath.section
         cell.lbHeader.tag = indexPath.section
-        cell.lbHeader.setTitle(listData[indexPath.section].title, for: UIControl.State.normal)
+        cell.lbHeader.setTitle(data.listMenu[indexPath.section].menu_name ?? "Menu", for: UIControl.State.normal)
         cell.lbHeader.addTarget(self, action: #selector(changeSectionState(header:)), for: UIControl.Event.touchUpInside)
-//        cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeSectionState(header:))))
-//        cell.lbHeader.text = listData[indexPath.section].title
+        
         return cell
     }
     
     @objc func changeSectionState(header : UIButton) {
-//        collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: <#T##IndexPath#>)
-        listData[header.tag].isExpanded = !listData[header.tag].isExpanded
+        if (data.listMenu[header.tag].link_detail != nil) {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+            controller.content = data.listMenu[header.tag].link_detail ?? ""
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
+            return
+        }
+        dataExpand[header.tag] = !dataExpand[header.tag]
         collectionView.reloadSections(IndexSet(integer: header.tag))
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell: Click(\((collectionView.cellForItem(at: indexPath) as! SubItemCollectionViewCell).lbContent.text))")
+        if (data.listMenu[indexPath.section].listGroup != nil) {
+            if (data.listMenu[indexPath.section].listGroup?.count != 0) {
+                if (data.listMenu[indexPath.section].listGroup?[indexPath.item].img_list != nil) {
+                    openGroupView(indexPath: indexPath)
+                    return
+                }
+            }
+        }
+        openContentView(indexPath: indexPath)
+    }
+    
+    func openContentView(indexPath : IndexPath){
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+        controller.content = data.listMenu[indexPath.section].listGroup?[indexPath.item].link_detail ?? ""
+        controller.modalTransitionStyle = .crossDissolve
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    func openGroupView(indexPath : IndexPath) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
+        controller.data = data.listMenu[indexPath.section].listGroup?[indexPath.item] ?? ServiceGroup()
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }

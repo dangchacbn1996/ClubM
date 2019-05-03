@@ -13,19 +13,27 @@ class SubItemCVC: UICollectionViewCell {
     static let ID_Identify = "SubItemCVC"
     
     @IBOutlet weak var viewWide : UIView!
+    @IBOutlet weak var imageWide : UIImageView!
     @IBOutlet weak var viewItem : UIView!
-//    @IBOutlet weak var lbTitle
-    var isShowItem = true
+    @IBOutlet weak var imageItem : UIImageView!
+    var data : ServiceGroup?
+    var isShowGrid = true
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
+    func setData(_ model : ServiceGroup) {
+        self.data = model
+        imageItem.downloaded(from: data?.img_grid ?? "")
+        imageWide.downloaded(from: data?.img_list ?? "")
+    }
+    
     func changeStyle(_ isShow : Bool) {
-        isShowItem = isShow
-        viewWide.alpha = isShowItem ? 1 : 0
-        viewItem.alpha = !isShowItem ? 1 : 0
+        isShowGrid = isShow
+        viewWide.alpha = isShowGrid ? 1 : 0
+        viewItem.alpha = !isShowGrid ? 1 : 0
     }
 
 }
