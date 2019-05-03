@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double CollapsibleTableSectionViewControllerVersionNumber;
-FOUNDATION_EXPORT const unsigned char CollapsibleTableSectionViewControllerVersionString[];
+FOUNDATION_EXPORT double AlamofireVersionNumber;
+FOUNDATION_EXPORT const unsigned char AlamofireVersionString[];
 
