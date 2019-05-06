@@ -32,9 +32,9 @@ class SubItemCollectionViewCell: UICollectionViewCell {
     
     func setData(_ model : ServiceGroup) {
         //        lbContent.text = model.content
-        lbContent.text = model.group_name ?? " "
-        if let groupIcon = model.group_thumbnail, !groupIcon.isEmpty {
-            let url = URL(string: groupIcon)
+        lbContent.text = model.group_name
+        if !model.group_thumbnail.isEmpty {
+            let url = URL(string: model.group_thumbnail)
             imageView.kf.setImage(with: url) { result in
                 switch result {
                 case .success(let value):

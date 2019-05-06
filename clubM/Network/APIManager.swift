@@ -10,21 +10,21 @@ import UIKit
 import Alamofire
 
 @objc protocol APIManagerFunction {
-    @objc optional func apiDoneGetListData()
+    @objc optional func apiDoneGetListData(data: ClubMData)
 }
 
 class APIManager {
     static func getListData(callback : APIManagerFunction) {
-        var apiCore = "https://onlyu.xyz/mobile/api/clubm.json"
+        let apiCore = "https://onlyu.xyz/mobile/api/clubm.json"
         Alamofire.request(apiCore).responseJSON{
             response in
             switch response.result {
             case .success:
                 do {
-                    let responseEx = try JSONDecoder().decode([DataServiceInfo].self, from: response.data!)
-                    let data = ModelServiceInfo(listData: responseEx)
-                    DataManager.modelService = ModelListService(data)
-                    callback.apiDoneGetListData!()
+                    let responseEx = try JSONDecoder().decode([ClubMOfferInfo].self, from: response.data!)
+                    let allData = ClubMData(responseEx)
+                    callback.apiDoneGetListData!(data: allData)
+                    
                 } catch let jsonErr {
                     print("Error: \(jsonErr)")
                 }

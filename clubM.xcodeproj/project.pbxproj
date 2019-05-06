@@ -11,9 +11,8 @@
 		5306A5A2227197A0004C8A09 /* SubItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5306A5A0227197A0004C8A09 /* SubItemCollectionViewCell.swift */; };
 		5306A5A3227197A0004C8A09 /* SubItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5306A5A1227197A0004C8A09 /* SubItemCollectionViewCell.xib */; };
 		53186540227AE79100E384BA /* CollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5318653F227AE79100E384BA /* CollectionHeader.swift */; };
-		536075DD2272B5280055E061 /* ModelServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075DC2272B5280055E061 /* ModelServiceInfo.swift */; };
+		536075DD2272B5280055E061 /* ClubMOfferInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075DC2272B5280055E061 /* ClubMOfferInfo.swift */; };
 		536075DF2272B7B40055E061 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075DE2272B7B40055E061 /* APIManager.swift */; };
-		536075E12272B8790055E061 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075E02272B8790055E061 /* DataManager.swift */; };
 		537B1629226FFAEA00E35F0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B1628226FFAEA00E35F0E /* AppDelegate.swift */; };
 		537B162B226FFAEA00E35F0E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B162A226FFAEA00E35F0E /* MainViewController.swift */; };
 		537B162E226FFAEA00E35F0E /* ClubM.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537B162C226FFAEA00E35F0E /* ClubM.storyboard */; };
@@ -21,7 +20,7 @@
 		537B1633226FFAEB00E35F0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537B1631226FFAEB00E35F0E /* LaunchScreen.storyboard */; };
 		537B163E226FFAEB00E35F0E /* clubMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B163D226FFAEB00E35F0E /* clubMTests.swift */; };
 		537B1649226FFAEB00E35F0E /* clubMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B1648226FFAEB00E35F0E /* clubMUITests.swift */; };
-		53889471227C278C0018293D /* ModelListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53889470227C278C0018293D /* ModelListService.swift */; };
+		53889471227C278C0018293D /* ClubMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53889470227C278C0018293D /* ClubMData.swift */; };
 		53889473227C3D3C0018293D /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53889472227C3D3C0018293D /* MembershipViewController.swift */; };
 		53889475227C3EF80018293D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53889474227C3EF80018293D /* WebKit.framework */; };
 		E2517967B3FBC1323ACFE22D /* Pods_clubMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E3E7460BEDB8C442BE1816 /* Pods_clubMUITests.framework */; };
@@ -56,9 +55,8 @@
 		5306A5A0227197A0004C8A09 /* SubItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		5306A5A1227197A0004C8A09 /* SubItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		5318653F227AE79100E384BA /* CollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeader.swift; sourceTree = "<group>"; };
-		536075DC2272B5280055E061 /* ModelServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelServiceInfo.swift; sourceTree = "<group>"; };
+		536075DC2272B5280055E061 /* ClubMOfferInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubMOfferInfo.swift; sourceTree = "<group>"; };
 		536075DE2272B7B40055E061 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		536075E02272B8790055E061 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		537B1625226FFAEA00E35F0E /* clubM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clubM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		537B1628226FFAEA00E35F0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		537B162A226FFAEA00E35F0E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +70,7 @@
 		537B1644226FFAEB00E35F0E /* clubMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clubMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		537B1648226FFAEB00E35F0E /* clubMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clubMUITests.swift; sourceTree = "<group>"; };
 		537B164A226FFAEB00E35F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53889470227C278C0018293D /* ModelListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelListService.swift; sourceTree = "<group>"; };
+		53889470227C278C0018293D /* ClubMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubMData.swift; sourceTree = "<group>"; };
 		53889472227C3D3C0018293D /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
 		53889474227C3EF80018293D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5793BEABCEAB6F07E631C542 /* Pods-clubM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clubM.release.xcconfig"; path = "Target Support Files/Pods-clubM/Pods-clubM.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			children = (
 				536075DB2272B42F0055E061 /* Model */,
 				536075DE2272B7B40055E061 /* APIManager.swift */,
-				536075E02272B8790055E061 /* DataManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -144,8 +141,8 @@
 		536075DB2272B42F0055E061 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				536075DC2272B5280055E061 /* ModelServiceInfo.swift */,
-				53889470227C278C0018293D /* ModelListService.swift */,
+				536075DC2272B5280055E061 /* ClubMOfferInfo.swift */,
+				53889470227C278C0018293D /* ClubMData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -503,18 +500,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				536075E12272B8790055E061 /* DataManager.swift in Sources */,
 				537B162B226FFAEA00E35F0E /* MainViewController.swift in Sources */,
 				53889473227C3D3C0018293D /* MembershipViewController.swift in Sources */,
 				53186540227AE79100E384BA /* CollectionHeader.swift in Sources */,
 				537B1629226FFAEA00E35F0E /* AppDelegate.swift in Sources */,
-				536075DD2272B5280055E061 /* ModelServiceInfo.swift in Sources */,
+				536075DD2272B5280055E061 /* ClubMOfferInfo.swift in Sources */,
 				F054E57622721CA7007BA7EE /* ContentViewController.swift in Sources */,
 				F054E5692271FE76007BA7EE /* SubItemCVC.swift in Sources */,
 				5306A5A2227197A0004C8A09 /* SubItemCollectionViewCell.swift in Sources */,
 				536075DF2272B7B40055E061 /* APIManager.swift in Sources */,
 				F054E56C22720215007BA7EE /* SubOfferViewController.swift in Sources */,
-				53889471227C278C0018293D /* ModelListService.swift in Sources */,
+				53889471227C278C0018293D /* ClubMData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

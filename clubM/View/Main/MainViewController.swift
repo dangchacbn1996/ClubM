@@ -13,7 +13,7 @@ class MainViewController: UIViewController, APIManagerFunction{
     fileprivate var _sectionsState = [Int : Bool]()
     let headerID = "collectionHeader"
     var itemID = SubItemCollectionViewCell.ID_Identify
-    var data = ModelListService()
+    var data = ClubMData()
     var dataExpand = [Bool]()
     var colHeight : CGFloat = 0
     var selectedRow = -1
@@ -26,10 +26,10 @@ class MainViewController: UIViewController, APIManagerFunction{
         collectionView.register(UINib(nibName: itemID, bundle: nil), forCellWithReuseIdentifier: itemID)
     }
     
-    func apiDoneGetListData() {
-        self.data = DataManager.modelService
+    func apiDoneGetListData(data: ClubMData) {
+        self.data = data
         dataExpand = [Bool]()
-        for _ in data.listMenu {
+        for _ in self.data.getMenuItems() {
             dataExpand.append(false)
         }
         collectionView.reloadData()
@@ -55,7 +55,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (dataExpand[section]) {
-            return data.listMenu[section].listGroup?.count ?? 0
+            return data.listMenu[section].listGroup.count ?? 0
         } else {
             return 0
         }
@@ -63,7 +63,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemID, for: indexPath) as! SubItemCollectionViewCell
-        cell.setData(data.listMenu[indexPath.section].listGroup![indexPath.item])
+        cell.setData(data.listMenu[indexPath.section].listGroup[indexPath.item])
         cell.imageView.layer.cornerRadius = cell.contentView.frame.height * 0.6 / 2
         return cell
     }
@@ -76,16 +76,16 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! CollectionHeader
         cell.lbHeader.tag = indexPath.section
-        cell.lbHeader.setTitle(data.listMenu[indexPath.section].menu_name ?? "Menu", for: UIControl.State.normal)
+        cell.lbHeader.setTitle(data.listMenu[indexPath.section].menu_name, for: UIControl.State.normal)
         cell.lbHeader.addTarget(self, action: #selector(changeSectionState(header:)), for: UIControl.Event.touchUpInside)
         
         return cell
     }
     
     @objc func changeSectionState(header : UIButton) {
-        if (data.listMenu[header.tag].link_detail != nil) {
+        if !data.listMenu[header.tag].link_detail.isEmpty {
             let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
-            controller.content = data.listMenu[header.tag].link_detail ?? ""
+            controller.content = data.listMenu[header.tag].link_detail
             controller.modalTransitionStyle = .crossDissolve
             self.present(controller, animated: true, completion: nil)
             return
@@ -95,12 +95,10 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (data.listMenu[indexPath.section].listGroup != nil) {
-            if (data.listMenu[indexPath.section].listGroup?.count != 0) {
-                if (data.listMenu[indexPath.section].listGroup?[indexPath.item].img_list != nil) {
-                    openGroupView(indexPath: indexPath)
-                    return
-                }
+        if data.listMenu[indexPath.section].hasGroup {
+            if !data.listMenu[indexPath.section].listGroup[indexPath.item].img_list.isEmpty {
+                openGroupView(indexPath: indexPath)
+                return
             }
         }
         openContentView(indexPath: indexPath)
@@ -108,14 +106,14 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func openContentView(indexPath : IndexPath){
         let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
-        controller.content = data.listMenu[indexPath.section].listGroup?[indexPath.item].link_detail ?? ""
+        controller.content = data.listMenu[indexPath.section].listGroup[indexPath.item].link_detail
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
     
     func openGroupView(indexPath : IndexPath) {
         let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
-        controller.data = data.listMenu[indexPath.section].listGroup?[indexPath.item] ?? ServiceGroup()
+        controller.data = data.listMenu[indexPath.section].listGroup[indexPath.item]
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
