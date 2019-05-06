@@ -26,6 +26,10 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         collectionView.register(UINib(nibName: itemID, bundle: nil), forCellWithReuseIdentifier: itemID)
         lbGroup.text = data.group_name ?? "Group"
+        
+        //default
+        btnChangeLayout.setImage(UIImage(named: "ic_list")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: UIControl.State.normal)
+        btnChangeLayout.tintColor = .white
     }
     
     @IBAction func goBack(){
@@ -49,7 +53,7 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBAction func changeLayout(){
         isGrid = !isGrid
-        btnChangeLayout.setImage(!isGrid ? UIImage(named: "ic_module")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) : UIImage(named: "ic_list")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: UIControl.State.normal)
+        btnChangeLayout.setImage(!isGrid ? UIImage(named: "ic_list")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) : UIImage(named: "ic_module")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: UIControl.State.normal)
         UIView.transition(with: collectionView, duration: 0.5, options: .transitionCrossDissolve, animations: {
             //Do the data reload here
             self.collectionView.reloadData()

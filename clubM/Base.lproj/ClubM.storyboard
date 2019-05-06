@@ -229,6 +229,7 @@
                                                     <constraint firstAttribute="width" secondItem="9nV-pv-0kl" secondAttribute="height" id="68s-Zg-cjv"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="ic_module"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_module"/>
                                                 </userDefinedRuntimeAttributes>

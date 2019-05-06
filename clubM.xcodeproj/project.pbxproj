@@ -21,10 +21,6 @@
 		537B1633226FFAEB00E35F0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537B1631226FFAEB00E35F0E /* LaunchScreen.storyboard */; };
 		537B163E226FFAEB00E35F0E /* clubMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B163D226FFAEB00E35F0E /* clubMTests.swift */; };
 		537B1649226FFAEB00E35F0E /* clubMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B1648226FFAEB00E35F0E /* clubMUITests.swift */; };
-		537B167022700B8B00E35F0E /* ImageViewextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B165F22700B8B00E35F0E /* ImageViewextension.swift */; };
-		537B167122700B8B00E35F0E /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B166122700B8B00E35F0E /* CustomView.swift */; };
-		537B167322700B8B00E35F0E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B166322700B8B00E35F0E /* CustomButton.swift */; };
-		537B167522700B8B00E35F0E /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B166522700B8B00E35F0E /* CustomImageView.swift */; };
 		53889471227C278C0018293D /* ModelListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53889470227C278C0018293D /* ModelListService.swift */; };
 		53889473227C3D3C0018293D /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53889472227C3D3C0018293D /* MembershipViewController.swift */; };
 		53889475227C3EF80018293D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53889474227C3EF80018293D /* WebKit.framework */; };
@@ -76,10 +72,6 @@
 		537B1644226FFAEB00E35F0E /* clubMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clubMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		537B1648226FFAEB00E35F0E /* clubMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clubMUITests.swift; sourceTree = "<group>"; };
 		537B164A226FFAEB00E35F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		537B165F22700B8B00E35F0E /* ImageViewextension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewextension.swift; sourceTree = "<group>"; };
-		537B166122700B8B00E35F0E /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		537B166322700B8B00E35F0E /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		537B166522700B8B00E35F0E /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		53889470227C278C0018293D /* ModelListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelListService.swift; sourceTree = "<group>"; };
 		53889472227C3D3C0018293D /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
 		53889474227C3EF80018293D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -184,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				536075DA2272B4220055E061 /* Network */,
-				537B165622700B8B00E35F0E /* CustomControls */,
 				5383215522701122001D0CC5 /* View */,
 				537B1628226FFAEA00E35F0E /* AppDelegate.swift */,
 				537B162C226FFAEA00E35F0E /* ClubM.storyboard */,
@@ -211,33 +202,6 @@
 				537B164A226FFAEB00E35F0E /* Info.plist */,
 			);
 			path = clubMUITests;
-			sourceTree = "<group>";
-		};
-		537B165622700B8B00E35F0E /* CustomControls */ = {
-			isa = PBXGroup;
-			children = (
-				537B165E22700B8B00E35F0E /* Extensioon */,
-				537B166022700B8B00E35F0E /* Views */,
-			);
-			path = CustomControls;
-			sourceTree = "<group>";
-		};
-		537B165E22700B8B00E35F0E /* Extensioon */ = {
-			isa = PBXGroup;
-			children = (
-				537B165F22700B8B00E35F0E /* ImageViewextension.swift */,
-			);
-			path = Extensioon;
-			sourceTree = "<group>";
-		};
-		537B166022700B8B00E35F0E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				537B166122700B8B00E35F0E /* CustomView.swift */,
-				537B166322700B8B00E35F0E /* CustomButton.swift */,
-				537B166522700B8B00E35F0E /* CustomImageView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5383215522701122001D0CC5 /* View */ = {
@@ -543,13 +507,9 @@
 				537B162B226FFAEA00E35F0E /* MainViewController.swift in Sources */,
 				53889473227C3D3C0018293D /* MembershipViewController.swift in Sources */,
 				53186540227AE79100E384BA /* CollectionHeader.swift in Sources */,
-				537B167522700B8B00E35F0E /* CustomImageView.swift in Sources */,
 				537B1629226FFAEA00E35F0E /* AppDelegate.swift in Sources */,
 				536075DD2272B5280055E061 /* ModelServiceInfo.swift in Sources */,
 				F054E57622721CA7007BA7EE /* ContentViewController.swift in Sources */,
-				537B167122700B8B00E35F0E /* CustomView.swift in Sources */,
-				537B167322700B8B00E35F0E /* CustomButton.swift in Sources */,
-				537B167022700B8B00E35F0E /* ImageViewextension.swift in Sources */,
 				F054E5692271FE76007BA7EE /* SubItemCVC.swift in Sources */,
 				5306A5A2227197A0004C8A09 /* SubItemCollectionViewCell.swift in Sources */,
 				536075DF2272B7B40055E061 /* APIManager.swift in Sources */,
