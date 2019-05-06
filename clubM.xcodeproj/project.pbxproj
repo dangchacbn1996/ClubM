@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,7 @@
 		536075E12272B8790055E061 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536075E02272B8790055E061 /* DataManager.swift */; };
 		537B1629226FFAEA00E35F0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B1628226FFAEA00E35F0E /* AppDelegate.swift */; };
 		537B162B226FFAEA00E35F0E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B162A226FFAEA00E35F0E /* MainViewController.swift */; };
-		537B162E226FFAEA00E35F0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537B162C226FFAEA00E35F0E /* Main.storyboard */; };
+		537B162E226FFAEA00E35F0E /* ClubM.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537B162C226FFAEA00E35F0E /* ClubM.storyboard */; };
 		537B1630226FFAEB00E35F0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537B162F226FFAEB00E35F0E /* Assets.xcassets */; };
 		537B1633226FFAEB00E35F0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537B1631226FFAEB00E35F0E /* LaunchScreen.storyboard */; };
 		537B163E226FFAEB00E35F0E /* clubMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B163D226FFAEB00E35F0E /* clubMTests.swift */; };
@@ -66,7 +66,7 @@
 		537B1625226FFAEA00E35F0E /* clubM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clubM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		537B1628226FFAEA00E35F0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		537B162A226FFAEA00E35F0E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		537B162D226FFAEA00E35F0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		537B162D226FFAEA00E35F0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ClubM.storyboard; sourceTree = "<group>"; };
 		537B162F226FFAEB00E35F0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		537B1632226FFAEB00E35F0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		537B1634226FFAEB00E35F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 				537B165622700B8B00E35F0E /* CustomControls */,
 				5383215522701122001D0CC5 /* View */,
 				537B1628226FFAEA00E35F0E /* AppDelegate.swift */,
-				537B162C226FFAEA00E35F0E /* Main.storyboard */,
+				537B162C226FFAEA00E35F0E /* ClubM.storyboard */,
 				537B162F226FFAEB00E35F0E /* Assets.xcassets */,
 				537B1631226FFAEB00E35F0E /* LaunchScreen.storyboard */,
 				537B1634226FFAEB00E35F0E /* Info.plist */,
@@ -421,7 +421,7 @@
 				537B1630226FFAEB00E35F0E /* Assets.xcassets in Resources */,
 				5306A5A3227197A0004C8A09 /* SubItemCollectionViewCell.xib in Resources */,
 				F054E56A2271FE76007BA7EE /* SubItemCVC.xib in Resources */,
-				537B162E226FFAEA00E35F0E /* Main.storyboard in Resources */,
+				537B162E226FFAEA00E35F0E /* ClubM.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,11 +492,18 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-clubM/Pods-clubM-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-clubM/Pods-clubM-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-clubM/Pods-clubM-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -583,12 +590,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		537B162C226FFAEA00E35F0E /* Main.storyboard */ = {
+		537B162C226FFAEA00E35F0E /* ClubM.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				537B162D226FFAEA00E35F0E /* Base */,
 			);
-			name = Main.storyboard;
+			name = ClubM.storyboard;
 			sourceTree = "<group>";
 		};
 		537B1631226FFAEB00E35F0E /* LaunchScreen.storyboard */ = {

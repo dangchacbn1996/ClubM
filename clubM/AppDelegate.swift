@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showMembership(viewController : UIViewController){
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: MembershipViewController.ID_Identify) as! MembershipViewController
+        let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: MembershipViewController.ID_Identify) as! MembershipViewController
         controller.modalTransitionStyle = .partialCurl
         viewController.present(controller, animated: true, completion: nil)
     }

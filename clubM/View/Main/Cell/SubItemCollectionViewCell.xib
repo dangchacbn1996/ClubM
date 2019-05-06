@@ -13,53 +13,56 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SubItemCollectionViewCell" customModule="clubM" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="140" height="149"/>
+            <rect key="frame" x="0.0" y="0.0" width="266" height="232"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="140" height="149"/>
+                <rect key="frame" x="0.0" y="0.0" width="266" height="232"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="n2K-x1-lxl">
-                        <rect key="frame" x="-30" y="-75" width="124" height="133"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-if-94r">
+                        <rect key="frame" x="0.0" y="0.0" width="266" height="232"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_item" translatesAutoresizingMaskIntoConstraints="NO" id="Giq-Dk-Wcr" customClass="CustomImageView" customModule="clubM" customModuleProvider="target">
-                                <rect key="frame" x="22" y="0.0" width="80" height="80"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Giq-Dk-Wcr">
+                                <rect key="frame" x="63.5" y="0.0" width="139" height="139"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Giq-Dk-Wcr" secondAttribute="height" id="XMv-g3-2wK"/>
+                                    <constraint firstAttribute="width" secondItem="Giq-Dk-Wcr" secondAttribute="height" multiplier="1:1" id="dGF-j6-jE7"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleView" value="NO"/>
-                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5l-tr-WXy">
-                                <rect key="frame" x="44.5" y="80" width="35.5" height="53"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5l-tr-WXy">
+                                <rect key="frame" x="8" y="139" width="250" height="93"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Giq-Dk-Wcr" firstAttribute="height" secondItem="n2K-x1-lxl" secondAttribute="height" multiplier="0.6" id="ix0-kE-71z"/>
+                            <constraint firstItem="T5l-tr-WXy" firstAttribute="top" secondItem="Giq-Dk-Wcr" secondAttribute="bottom" id="1hY-VR-kTf"/>
+                            <constraint firstItem="T5l-tr-WXy" firstAttribute="leading" secondItem="T9O-if-94r" secondAttribute="leading" constant="8" id="8GC-kp-umd"/>
+                            <constraint firstItem="Giq-Dk-Wcr" firstAttribute="centerX" secondItem="T9O-if-94r" secondAttribute="centerX" id="IPt-Oq-6bQ"/>
+                            <constraint firstAttribute="bottom" secondItem="T5l-tr-WXy" secondAttribute="bottom" id="Ves-kq-hMJ"/>
+                            <constraint firstItem="T5l-tr-WXy" firstAttribute="height" secondItem="T9O-if-94r" secondAttribute="height" multiplier="0.4" id="b7z-MD-jQG"/>
+                            <constraint firstItem="T5l-tr-WXy" firstAttribute="centerX" secondItem="Giq-Dk-Wcr" secondAttribute="centerX" id="bg2-6A-sPa"/>
+                            <constraint firstItem="Giq-Dk-Wcr" firstAttribute="top" secondItem="T9O-if-94r" secondAttribute="top" id="dz2-z9-FLk"/>
+                            <constraint firstAttribute="trailing" secondItem="T5l-tr-WXy" secondAttribute="trailing" constant="8" id="ngr-gp-Gy0"/>
+                            <constraint firstItem="Giq-Dk-Wcr" firstAttribute="height" secondItem="T9O-if-94r" secondAttribute="height" multiplier="0.6" id="oKR-3x-RZT"/>
                         </constraints>
-                    </stackView>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="n2K-x1-lxl" secondAttribute="bottom" constant="8" id="6N2-J7-EYr"/>
-                <constraint firstItem="n2K-x1-lxl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="VwY-qi-3ZC"/>
-                <constraint firstItem="n2K-x1-lxl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="fpP-to-ZQZ"/>
-                <constraint firstAttribute="trailing" secondItem="n2K-x1-lxl" secondAttribute="trailing" constant="8" id="qOY-kR-5UH"/>
+                <constraint firstAttribute="trailing" secondItem="T9O-if-94r" secondAttribute="trailing" id="3u4-A1-qyB"/>
+                <constraint firstItem="T9O-if-94r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JDG-pG-cbF"/>
+                <constraint firstAttribute="bottom" secondItem="T9O-if-94r" secondAttribute="bottom" id="WIG-ap-oWy"/>
+                <constraint firstItem="T9O-if-94r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vUO-ga-InF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="140" height="149"/>
+            <size key="customSize" width="266" height="232"/>
             <connections>
                 <outlet property="imageView" destination="Giq-Dk-Wcr" id="VWG-Jh-uRs"/>
                 <outlet property="lbContent" destination="T5l-tr-WXy" id="oRi-kL-SBp"/>
             </connections>
-            <point key="canvasLocation" x="148" y="152"/>
+            <point key="canvasLocation" x="239.13043478260872" y="179.46428571428569"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="ic_item" width="45" height="45"/>
-    </resources>
 </document>

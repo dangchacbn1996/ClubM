@@ -64,6 +64,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemID, for: indexPath) as! SubItemCollectionViewCell
         cell.setData(data.listMenu[indexPath.section].listGroup![indexPath.item])
+        cell.imageView.layer.cornerRadius = cell.contentView.frame.height * 0.6 / 2
         return cell
     }
     
@@ -83,7 +84,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     @objc func changeSectionState(header : UIButton) {
         if (data.listMenu[header.tag].link_detail != nil) {
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+            let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
             controller.content = data.listMenu[header.tag].link_detail ?? ""
             controller.modalTransitionStyle = .crossDissolve
             self.present(controller, animated: true, completion: nil)
@@ -106,14 +107,14 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func openContentView(indexPath : IndexPath){
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
+        let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
         controller.content = data.listMenu[indexPath.section].listGroup?[indexPath.item].link_detail ?? ""
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
     
     func openGroupView(indexPath : IndexPath) {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
+        let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
         controller.data = data.listMenu[indexPath.section].listGroup?[indexPath.item] ?? ServiceGroup()
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
