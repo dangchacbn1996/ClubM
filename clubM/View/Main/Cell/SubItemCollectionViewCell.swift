@@ -58,7 +58,7 @@ class SubItemCollectionViewCell: UICollectionViewCell {
             self.layoutIfNeeded()
         }
         
-        print("w = \(imageView.frame.size.width) ; h = \(imageView.frame.size.height)")
+       // print("w = \(imageView.frame.size.width) ; h = \(imageView.frame.size.height)")
         self.setNeedsLayout()
     }
     

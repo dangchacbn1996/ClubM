@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import HandyJSON
 
-class ClubMOfferInfo : NSObject, Decodable {
+class ClubMOfferInfo : HandyJSON {
     var menu_name = "" // String?
     var group_name = "" // : String?
     var group_thumbnail = "" // : String?
     var img_list = "" // : String?
     var img_grid = "" // : String?
     var link_detail = "" // : String?
+    
+    required init() {
+        
+    }
 }

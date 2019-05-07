@@ -18,11 +18,12 @@ class ServiceGroup: NSObject {
     
     var hasOffer: Bool = false
     
-    convenience init(_ groupName: String, _ itemsInGroup : [ClubMOfferInfo]) {
+    convenience init(_ groupName: String, _ groupIcon: String , _ itemsInGroup : [ClubMOfferInfo]) {
         self.init()
         self.group_name = groupName
+        self.group_thumbnail = groupIcon
         
-        // just has group level: eg : Emigration
+        // just has group level: eg : Emigration OR has only ONE element
         if itemsInGroup.count == 1 && itemsInGroup[0].img_grid.isEmpty && itemsInGroup[0].img_list.isEmpty{
             self.link_detail = itemsInGroup[0].link_detail
         } else {
@@ -48,7 +49,7 @@ class ServiceMenu : NSObject {
         self.init()
         self.menu_name = menuName
         
-        // just has menu level: eg : MemberShip
+        // just has menu level: eg : MemberShip => show detail
         if itemsInMenu.count == 1 && itemsInMenu[0].group_name.isEmpty {
             self.link_detail = itemsInMenu[0].link_detail
         } else {
@@ -63,7 +64,7 @@ class ServiceMenu : NSObject {
             })
             
             for (groupName, offers) in groupByGroup {
-                listGroup.append(ServiceGroup(groupName, offers))
+                listGroup.append(ServiceGroup(groupName, offers[0].group_thumbnail, offers))
             }
         }
         print("")
@@ -92,10 +93,6 @@ class ClubMData: NSObject {
         }
         
         print("")
-    }
-    
-    func getMenuItems() -> [ServiceMenu] {
-        return []
     }
 }
 

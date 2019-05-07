@@ -29,7 +29,7 @@ class MainViewController: UIViewController, APIManagerFunction{
     func apiDoneGetListData(data: ClubMData) {
         self.data = data
         dataExpand = [Bool]()
-        for _ in self.data.getMenuItems() {
+        for _ in self.data.listMenu{
             dataExpand.append(false)
         }
         collectionView.reloadData()
@@ -55,7 +55,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (dataExpand[section]) {
-            return data.listMenu[section].listGroup.count ?? 0
+            return data.listMenu[section].listGroup.count
         } else {
             return 0
         }
@@ -95,27 +95,30 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if data.listMenu[indexPath.section].hasGroup {
-            if !data.listMenu[indexPath.section].listGroup[indexPath.item].img_list.isEmpty {
-                openGroupView(indexPath: indexPath)
-                return
+        let menuData = data.listMenu[indexPath.section]
+        if menuData.hasGroup {
+            let groupData = menuData.listGroup[indexPath.row]
+            if groupData.hasOffer {
+                openGroupView(groupData: groupData)
+            } else {
+                openContentView(linkDetail: groupData.link_detail)
             }
+        } else {
+            openContentView(linkDetail: menuData.link_detail)
         }
-        openContentView(indexPath: indexPath)
     }
     
-    func openContentView(indexPath : IndexPath){
+    func openContentView(linkDetail: String){
         let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
-        controller.content = data.listMenu[indexPath.section].listGroup[indexPath.item].link_detail
+        controller.content = linkDetail
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
     
-    func openGroupView(indexPath : IndexPath) {
+    func openGroupView(groupData : ServiceGroup) {
         let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: SubOfferViewController.ID_Identify) as! SubOfferViewController
-        controller.data = data.listMenu[indexPath.section].listGroup[indexPath.item]
+        controller.data = groupData
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }
-    
 }

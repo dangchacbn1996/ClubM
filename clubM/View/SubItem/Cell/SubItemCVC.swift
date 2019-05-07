@@ -17,7 +17,7 @@ class SubItemCVC: UICollectionViewCell {
     @IBOutlet weak var imageWide : UIImageView!
     @IBOutlet weak var viewItem : UIView!
     @IBOutlet weak var imageItem : UIImageView!
-    var data : ServiceGroup?
+    var data : ClubMOfferInfo?
     var isShowGrid = true
     
     override func awakeFromNib() {
@@ -25,7 +25,7 @@ class SubItemCVC: UICollectionViewCell {
         // Initialization code
     }
     
-    func setData(_ model : ServiceGroup) {
+    func setData(_ model : ClubMOfferInfo) {
         self.data = model
         //        imageItem.downloaded(from: data?.img_grid ?? "")
         //        imageWide.downloaded(from: data?.img_list ?? "")

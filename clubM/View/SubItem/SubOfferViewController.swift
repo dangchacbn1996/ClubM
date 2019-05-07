@@ -25,7 +25,7 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: itemID, bundle: nil), forCellWithReuseIdentifier: itemID)
-        lbGroup.text = data.group_name ?? "Group"
+        lbGroup.text = data.group_name
         
         //default
         btnChangeLayout.setImage(UIImage(named: "ic_list")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: UIControl.State.normal)
@@ -61,19 +61,21 @@ class SubOfferViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return data.listOffers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemID, for: indexPath) as! SubItemCVC
-        cell.setData(data)
+        let offerData = data.listOffers[indexPath.row]
+        cell.setData(offerData)
         cell.changeStyle(isGrid)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = UIStoryboard(name: "ClubM", bundle: nil).instantiateViewController(withIdentifier: ContentViewController.ID_Identify) as! ContentViewController
-        controller.content = data.link_detail ?? ""
+        let offerData = data.listOffers[indexPath.row]
+        controller.content = offerData.link_detail
         controller.modalTransitionStyle = .crossDissolve
         self.present(controller, animated: true, completion: nil)
     }

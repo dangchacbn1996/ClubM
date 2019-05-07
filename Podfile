@@ -8,6 +8,7 @@ target 'clubM' do
   # Pods for clubM
   pod 'Alamofire'
   pod 'Kingfisher', '~> 5.0'
+pod 'HandyJSON', '~> 5.0.0-beta.1'
 #  pod 'CollapsibleTableSectionViewController'
 #  pod 'DisplaySwitcher'
 
